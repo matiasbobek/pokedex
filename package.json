@@ -1,0 +1,22 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "muestra a los pokemones con sus caracteristicas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matiasbobek/pokedex.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matiasbobek/pokedex/issues"
+  },
+  "homepage": "https://github.com/matiasbobek/pokedex#readme",
+  "dependencies": {
+    "bootstrap": "^4.6.0"
+  }
+}
