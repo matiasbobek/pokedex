@@ -20,6 +20,7 @@ $BOTON_SIGUIENTE.onclick = ()=>{
 }
 
 $BOTON_ANTERIOR.onclick = ()=>{
+
   if(paginaPokemonesSecundarios >=1){
     paginaPokemonesSecundarios--
     borrarPokemonesSecundarios();
@@ -27,8 +28,6 @@ $BOTON_ANTERIOR.onclick = ()=>{
   }
 
 }
-
-
 
 
 function cargarPokemonesSecundarios (){
@@ -39,7 +38,6 @@ function cargarPokemonesSecundarios (){
             fetch(pokemon.url)
               .then(respuesta => respuesta.json())
               .then(respuesaJSON =>{
-                console.log(pokemon)
                 const $IMAGEN_SECUNDARIA = document.createElement("img");
                 $IMAGEN_SECUNDARIA.className ="imagen-secundaria"
                 $IMAGEN_SECUNDARIA.id=respuesaJSON.id;
@@ -48,6 +46,7 @@ function cargarPokemonesSecundarios (){
               })
         })
       })
+      .catch(error => console.error(error))
 
 }
 
@@ -68,6 +67,7 @@ function cargarPokemonPrincipal (idPokemonSeleccionado){
 
         $IMAGEN_PRINCIPAL.src=respuesaJSON.sprites.other["official-artwork"].front_default;
       })
+      .catch(error => console.error(error))
 
 }
 
