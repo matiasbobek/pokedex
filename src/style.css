@@ -1,5 +1,5 @@
 .general{
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 #imagen-principal{
@@ -8,6 +8,14 @@
 }
 
 .imagen-secundaria{
-    width: 50px;
-    height: 50px;
+    width: 110px;
+    height: 110px;
+}
+
+#boton-siguiente{
+    float: right;
+}
+
+#imagenes-secundarias{
+    cursor: pointer;    
 }

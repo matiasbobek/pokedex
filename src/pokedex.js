@@ -1,9 +1,54 @@
-let idPokemonSeleccionado = 1;
+
 const $LISTA_CARACTERISTICAS = document.querySelector('#lista-caracteristicas');
 const $IMAGEN_PRINCIPAL = document.querySelector('#imagen-principal');
+const $IMAGENES_SECUNDARIAS = document.querySelector('#imagenes-secundarias');
+const $BOTON_SIGUIENTE = document.querySelector('#boton-siguiente');
+const $BOTON_ANTERIOR = document.querySelector('#boton-anterior');
+let paginaPokemonesSecundarios = 0;
 
-cargarPokemonPrincipal(idPokemonSeleccionado)
 
+
+
+cargarPokemonPrincipal(1)
+cargarPokemonesSecundarios();
+$IMAGENES_SECUNDARIAS.onclick = cambiarPokemonPrincipal;
+
+$BOTON_SIGUIENTE.onclick = ()=>{
+  paginaPokemonesSecundarios++
+  borrarPokemonesSecundarios();
+  cargarPokemonesSecundarios();
+}
+
+$BOTON_ANTERIOR.onclick = ()=>{
+
+  if(paginaPokemonesSecundarios >=1){
+    paginaPokemonesSecundarios--
+    borrarPokemonesSecundarios();
+    cargarPokemonesSecundarios();
+  }
+
+}
+
+
+function cargarPokemonesSecundarios (){
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=24&offset=${paginaPokemonesSecundarios*24}`)
+      .then(respuesta => respuesta.json())
+      .then(respuesaJSON =>{
+        respuesaJSON.results.forEach(pokemon=>{
+            fetch(pokemon.url)
+              .then(respuesta => respuesta.json())
+              .then(respuesaJSON =>{
+                const $IMAGEN_SECUNDARIA = document.createElement("img");
+                $IMAGEN_SECUNDARIA.className ="imagen-secundaria"
+                $IMAGEN_SECUNDARIA.id=respuesaJSON.id;
+                $IMAGEN_SECUNDARIA.src=respuesaJSON.sprites.front_default;
+                $IMAGENES_SECUNDARIAS.appendChild($IMAGEN_SECUNDARIA);
+              })
+        })
+      })
+      .catch(error => console.error(error))
+
+}
 
 
 function cargarPokemonPrincipal (idPokemonSeleccionado){
@@ -22,9 +67,21 @@ function cargarPokemonPrincipal (idPokemonSeleccionado){
 
         $IMAGEN_PRINCIPAL.src=respuesaJSON.sprites.other["official-artwork"].front_default;
       })
+      .catch(error => console.error(error))
 
 }
 
+
+function cambiarPokemonPrincipal(event){
+  if(!isNaN(event.target.id)){
+    borrarCaracteristicasPrincipales();
+    cargarPokemonPrincipal(event.target.id)
+  } else{
+    return;
+  }
+
+
+}
 
 function conMayusculaPrimerLetra (string){
     return string.charAt(0).toUpperCase() + string.slice(1)
@@ -62,4 +119,15 @@ function agregaHabilidadPokemon(habilidad, i){
     $HABILIDAD_POKEMON.textContent = `Habilidad ${Number(i)+1}: ${conMayusculaPrimerLetra(habilidad)}`;
     $LISTA_CARACTERISTICAS.appendChild($HABILIDAD_POKEMON); 
     
+}
+
+function borrarCaracteristicasPrincipales(){
+  document.querySelectorAll('#lista-caracteristicas li').forEach(caracteristica =>{
+    caracteristica.remove();
+  })
+}
+function borrarPokemonesSecundarios(){
+  document.querySelectorAll('#imagenes-secundarias img').forEach(imagen =>{
+    imagen.remove();
+  })
 }
