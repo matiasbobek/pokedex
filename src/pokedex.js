@@ -20,9 +20,12 @@ $BOTON_SIGUIENTE.onclick = ()=>{
 }
 
 $BOTON_ANTERIOR.onclick = ()=>{
-  paginaPokemonesSecundarios--
-  borrarPokemonesSecundarios();
-  cargarPokemonesSecundarios();
+  if(paginaPokemonesSecundarios >=1){
+    paginaPokemonesSecundarios--
+    borrarPokemonesSecundarios();
+    cargarPokemonesSecundarios();
+  }
+
 }
 
 
