@@ -1,8 +1,28 @@
+
 let idPokemonSeleccionado = 1;
 const $LISTA_CARACTERISTICAS = document.querySelector('#lista-caracteristicas');
 const $IMAGEN_PRINCIPAL = document.querySelector('#imagen-principal');
+const $IMAGENES_SECUNDARIAS = document.querySelector('#imagenes-secundarias');
 
 cargarPokemonPrincipal(idPokemonSeleccionado)
+cargarPokemonesSecundarios();
+
+function cargarPokemonesSecundarios (){
+    fetch(`https://pokeapi.co/api/v2/pokemon/`)
+      .then(respuesta => respuesta.json())
+      .then(respuesaJSON =>{
+        respuesaJSON.results.forEach(pokemon=>{
+            fetch(pokemon.url)
+              .then(respuesta => respuesta.json())
+              .then(respuesaJSON =>{
+                const $IMAGEN_SECUNDARIA = document.createElement("img");
+                $IMAGEN_SECUNDARIA.src=respuesaJSON.sprites.front_default;
+                $IMAGENES_SECUNDARIAS.appendChild($IMAGEN_SECUNDARIA);
+              })
+        })
+      })
+
+}
 
 
 
