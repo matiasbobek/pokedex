@@ -1,4 +1,25 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable space-before-blocks */
 
+import { loadSecondaryImages, loadMainPokemon } from './services.js';
+import { displaySecondaryImages } from './ui.js'
+
+
+async function initialize(){
+  displaySecondaryImages(await loadSecondaryImages(), 1);
+} 
+
+
+initialize();
+
+
+
+
+
+
+
+
+/*
 const $LISTA_CARACTERISTICAS = document.querySelector('#lista-caracteristicas');
 const $IMAGEN_PRINCIPAL = document.querySelector('#imagen-principal');
 const $IMAGENES_SECUNDARIAS = document.querySelector('#imagenes-secundarias');
@@ -131,3 +152,6 @@ function borrarPokemonesSecundarios(){
     imagen.remove();
   })
 }
+
+
+*/
