@@ -4,10 +4,10 @@
 
 export function loadSecondaryImages(page = 1) {
   const ImagesSources = [];
-  const lastId = page * 25;
+  const lastId = page * 24;
 
-  for (let i = lastId - 24; i <= lastId; i++) {
-    ImagesSources[i] = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`;
+  for (let i = lastId - 23; i <= lastId; i++) {
+    ImagesSources[i] = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`;
   }
 
   return ImagesSources;
