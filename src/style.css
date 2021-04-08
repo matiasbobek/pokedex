@@ -3,23 +3,27 @@
 }
 
 #main-image{
-    width: 250px;
-    height: 250px;
+    height: 28vh;
+    width: 28vh;
 }
 
 .secondary-image{
-    width: 110px;
-    height: 110px;
+    width: 12vh;
+    height: 12vh;
 }
 
 #boton-siguiente{
     float: right;
 }
 
-#imagenes-secundarias{
+#secondary-images{
     cursor: pointer;    
 }
 
 .hidden{
     display: none;
+}
+
+#button-next{
+    margin-left: 15px;
 }

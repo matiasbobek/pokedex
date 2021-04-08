@@ -37,7 +37,7 @@ function FirstLetterUpperCase(string) {
 function addAbility(ability, i) {
   const $pokemonAbility = document.createElement('li');
   $pokemonAbility.className = 'list-group-item';
-  $pokemonAbility.textContent = `Habilidad ${Number(i) + 1}: ${FirstLetterUpperCase(ability)}`;
+  $pokemonAbility.textContent = `Ability ${Number(i) + 1}: ${FirstLetterUpperCase(ability)}`;
   $featuresList.appendChild($pokemonAbility);
 }
 
@@ -62,17 +62,17 @@ export function displayMainPokemon(pokemon) {
   removeLoading();
   const $pokemonName = document.createElement('li');
   $pokemonName.className = 'list-group-item';
-  $pokemonName.textContent = `Nombre: ${FirstLetterUpperCase(pokemon.name)}`;
+  $pokemonName.textContent = `Name: ${FirstLetterUpperCase(pokemon.name)}`;
   $featuresList.appendChild($pokemonName);
 
   const $pokemonHeight = document.createElement('li');
   $pokemonHeight.className = 'list-group-item';
-  $pokemonHeight.textContent = `Altura: ${pokemon.height}`;
+  $pokemonHeight.textContent = `Height: ${pokemon.height}`;
   $featuresList.appendChild($pokemonHeight);
 
   const $pokemonWeight = document.createElement('li');
   $pokemonWeight.className = 'list-group-item';
-  $pokemonWeight.textContent = `Peso: ${pokemon.weight}`;
+  $pokemonWeight.textContent = `Weight: ${pokemon.weight}`;
   $featuresList.appendChild($pokemonWeight);
 
   Object.keys(pokemon.abilities).forEach((i) => {
