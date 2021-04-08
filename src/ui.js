@@ -6,6 +6,30 @@
 let page = 1;
 const $featuresList = document.querySelector('#features-list');
 
+function removePreviousMainPokemon() {
+  document.querySelectorAll('.list-group-item').forEach((item) => item.remove());
+}
+
+function removePreviousSecondaryPokemons() {
+  document.querySelectorAll('.secondary-image').forEach((image) => image.remove());
+}
+
+function removeLoading() {
+  if (document.querySelector('#loading')) {
+    document.querySelector('#loading').remove();
+  }
+}
+
+export function displayLoading() {
+  removePreviousMainPokemon();
+  const $loading = document.createElement('li');
+  $loading.className = 'list-group-item';
+  $loading.id = 'loading';
+  $loading.textContent = 'Loading...';
+  $featuresList.appendChild($loading);
+  document.querySelector('#main-image').classList.add('hidden');
+}
+
 function FirstLetterUpperCase(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -18,6 +42,7 @@ function addAbility(ability, i) {
 }
 
 export function displaySecondaryImages(ImagesSources, callBackRefreshMainPokemon) {
+  removePreviousSecondaryPokemons();
   const $secondaryImages = document.querySelector('#imagenes-secundarias');
   const lastId = page * 24;
 
@@ -34,6 +59,7 @@ export function displaySecondaryImages(ImagesSources, callBackRefreshMainPokemon
 }
 
 export function displayMainPokemon(pokemon) {
+  removeLoading();
   const $pokemonName = document.createElement('li');
   $pokemonName.className = 'list-group-item';
   $pokemonName.textContent = `Nombre: ${FirstLetterUpperCase(pokemon.name)}`;
@@ -55,14 +81,7 @@ export function displayMainPokemon(pokemon) {
 
   const $mainImage = document.querySelector('#main-image');
   $mainImage.src = pokemon.sprites.other['official-artwork'].front_default;
-}
-
-export function removePreviousMainPokemon() {
-  document.querySelectorAll('.list-group-item').forEach((item) => item.remove());
-}
-
-export function removePreviousSecondaryPokemons() {
-  document.querySelectorAll('.secondary-image').forEach((image) => image.remove());
+  $mainImage.classList.remove('hidden');
 }
 
 export function enableButtons(callbackRefreshSecondary) {

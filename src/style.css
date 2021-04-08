@@ -19,3 +19,7 @@
 #imagenes-secundarias{
     cursor: pointer;    
 }
+
+.hidden{
+    display: none;
+}

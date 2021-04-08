@@ -3,16 +3,15 @@
 
 import { loadSecondaryImages, loadMainPokemon } from './services.js';
 import {
-  displaySecondaryImages, displayMainPokemon, removePreviousMainPokemon, enableButtons, removePreviousSecondaryPokemons,
+  displaySecondaryImages, displayMainPokemon, enableButtons, displayLoading
 } from './ui.js';
 
 async function refresh(PokemonId){
-  removePreviousMainPokemon();
+  displayLoading();
   displayMainPokemon(await loadMainPokemon(PokemonId));
 }
 
 async function refreshSecondary(page){
-  removePreviousSecondaryPokemons();
   displaySecondaryImages(await loadSecondaryImages(page), refresh);
 }
 
