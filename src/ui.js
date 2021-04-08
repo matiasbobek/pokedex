@@ -1,5 +1,9 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-loop-func */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable linebreak-style */
+
+let page = 1;
 const $featuresList = document.querySelector('#features-list');
 
 function FirstLetterUpperCase(string) {
@@ -13,7 +17,7 @@ function addAbility(ability, i) {
   $featuresList.appendChild($pokemonAbility);
 }
 
-export function displaySecondaryImages(ImagesSources, page) {
+export function displaySecondaryImages(ImagesSources, callBackRefreshMainPokemon) {
   const $secondaryImages = document.querySelector('#imagenes-secundarias');
   const lastId = page * 24;
 
@@ -23,6 +27,9 @@ export function displaySecondaryImages(ImagesSources, page) {
     $secondaryImage.id = i;
     $secondaryImage.src = ImagesSources[i];
     $secondaryImages.appendChild($secondaryImage);
+    $secondaryImage.onclick = () => {
+      callBackRefreshMainPokemon($secondaryImage.id);
+    };
   }
 }
 
@@ -50,20 +57,24 @@ export function displayMainPokemon(pokemon) {
   $mainImage.src = pokemon.sprites.other['official-artwork'].front_default;
 }
 
-/* const $pokemonAbility = document.createElement('li');
-    $pokemonAbility.className = 'list-group-item';
-    $pokemonAbility.textContent = `Habilidad ${Number(i) + 1}: ${FirstLetterUpperCase(i.ability.name)}`;
-    $featuresList.appendChild($pokemonAbility); */
+export function removePreviousMainPokemon() {
+  document.querySelectorAll('.list-group-item').forEach((item) => item.remove());
+}
 
-/*
+export function removePreviousSecondaryPokemons() {
+  document.querySelectorAll('.secondary-image').forEach((image) => image.remove());
+}
 
-        Object.keys(respuesaJSON.abilities).forEach(habilidad => {
-            agregaHabilidadPokemon(respuesaJSON.abilities[habilidad].ability.name, habilidad)
-        })
+export function enableButtons(callbackRefreshSecondary) {
+  document.querySelector('#button-next').onclick = (() => {
+    page++;
+    callbackRefreshSecondary(page);
+  });
 
-    const $HABILIDAD_POKEMON = document.createElement("li");
-    $HABILIDAD_POKEMON.className="list-group-item"
-    $HABILIDAD_POKEMON.textContent = `Habilidad ${Number(i)+1}: ${conMayusculaPrimerLetra(habilidad)}`;
-    $LISTA_CARACTERISTICAS.appendChild($HABILIDAD_POKEMON);
-
-*/
+  document.querySelector('#button-previous').onclick = (() => {
+    if (page > 1) {
+      page--;
+      callbackRefreshSecondary(page);
+    }
+  });
+}
