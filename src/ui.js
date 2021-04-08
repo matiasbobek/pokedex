@@ -43,7 +43,7 @@ function addAbility(ability, i) {
 
 export function displaySecondaryImages(ImagesSources, callBackRefreshMainPokemon) {
   removePreviousSecondaryPokemons();
-  const $secondaryImages = document.querySelector('#imagenes-secundarias');
+  const $secondaryImages = document.querySelector('#secondary-images');
   const lastId = page * 24;
 
   for (let i = lastId - 23; i <= lastId; i++) {
