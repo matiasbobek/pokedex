@@ -3,7 +3,7 @@
 
 import { loadSecondaryImages, loadMainPokemon } from './services.js';
 import {
-  displaySecondaryImages, displayMainPokemon, enableButtons, displayLoading
+  displaySecondaryImages, displayMainPokemon, enableButtons, displayLoading,
 } from './ui.js';
 
 async function refresh(PokemonId){

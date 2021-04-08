@@ -3,6 +3,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable linebreak-style */
 
+const lastpokemon = 898;
 let page = 1;
 const $featuresList = document.querySelector('#features-list');
 
@@ -22,11 +23,11 @@ function removeLoading() {
 
 export function displayLoading() {
   removePreviousMainPokemon();
-  const $loading = document.createElement('li');
-  $loading.className = 'list-group-item';
+  const $primaryContainter = document.querySelector('#loading-containter');
+  const $loading = document.createElement('p');
   $loading.id = 'loading';
   $loading.textContent = 'Loading...';
-  $featuresList.appendChild($loading);
+  $primaryContainter.appendChild($loading);
   document.querySelector('#main-image').classList.add('hidden');
 }
 
@@ -47,19 +48,22 @@ export function displaySecondaryImages(ImagesSources, callBackRefreshMainPokemon
   const lastId = page * 24;
 
   for (let i = lastId - 23; i <= lastId; i++) {
-    const $secondaryImage = document.createElement('img');
-    $secondaryImage.className = 'secondary-image';
-    $secondaryImage.id = i;
-    $secondaryImage.src = ImagesSources[i];
-    $secondaryImages.appendChild($secondaryImage);
-    $secondaryImage.onclick = () => {
-      callBackRefreshMainPokemon($secondaryImage.id);
-    };
+    if (i < lastpokemon) {
+      const $secondaryImage = document.createElement('img');
+      $secondaryImage.className = 'secondary-image';
+      $secondaryImage.id = i;
+      $secondaryImage.src = ImagesSources[i];
+      $secondaryImages.appendChild($secondaryImage);
+      $secondaryImage.onclick = () => {
+        callBackRefreshMainPokemon($secondaryImage.id);
+      };
+    }
   }
 }
 
 export function displayMainPokemon(pokemon) {
   removeLoading();
+  removePreviousMainPokemon();
   const $pokemonName = document.createElement('li');
   $pokemonName.className = 'list-group-item';
   $pokemonName.textContent = `Name: ${FirstLetterUpperCase(pokemon.name)}`;
@@ -86,7 +90,7 @@ export function displayMainPokemon(pokemon) {
 
 export function enableButtons(callbackRefreshSecondary) {
   document.querySelector('#button-next').onclick = (() => {
-    if (page < 37) {
+    if (page < 38) {
       page++;
       callbackRefreshSecondary(page);
     }
