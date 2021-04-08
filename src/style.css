@@ -27,3 +27,8 @@
 #button-next{
     margin-left: 15px;
 }
+
+#features-list{
+    height: 28vh;
+    width: 28vh;  
+}
