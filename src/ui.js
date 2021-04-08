@@ -86,8 +86,10 @@ export function displayMainPokemon(pokemon) {
 
 export function enableButtons(callbackRefreshSecondary) {
   document.querySelector('#button-next').onclick = (() => {
-    page++;
-    callbackRefreshSecondary(page);
+    if (page < 37) {
+      page++;
+      callbackRefreshSecondary(page);
+    }
   });
 
   document.querySelector('#button-previous').onclick = (() => {
