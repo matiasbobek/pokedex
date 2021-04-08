@@ -1,13 +1,13 @@
 # Pokedex
-Interfaz que lista imágenes y características principales de los pokemones
+Interface listing images and main characteristics of pokemons
 
-## Probar online
+## Try it online
 
 https://matiasbobek.github.io/pokedex/
 
-### Instalación
+### Installation
 
-Correr `npm install`
+Run `npm install`
 
-#### RESTful API utilizada
+#### RESTful API used
 pokeapi.co
