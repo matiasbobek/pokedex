@@ -25,6 +25,7 @@ export function displayLoading() {
   removePreviousMainPokemon();
   const $primaryContainter = document.querySelector('#loading-containter');
   const $loading = document.createElement('p');
+  $loading.className = 'float-right'
   $loading.id = 'loading';
   $loading.textContent = 'Loading...';
   $primaryContainter.appendChild($loading);
