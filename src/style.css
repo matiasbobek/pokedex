@@ -30,8 +30,14 @@
 
 #features-list{
     height: 28vh;
+
+}
+
+#features-list li{
+    font-size: 1.35vh;
+    width: 90%;
 }
 
 #bar{
-    margin-top: 3rem;
+    margin-top: 3.1rem;
 }
