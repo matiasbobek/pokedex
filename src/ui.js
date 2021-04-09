@@ -25,7 +25,7 @@ export function displayLoading() {
   removePreviousMainPokemon();
   const $primaryContainter = document.querySelector('#loading-containter');
   const $loading = document.createElement('p');
-  $loading.className = 'float-right'
+  $loading.className = 'float-right';
   $loading.id = 'loading';
   $loading.textContent = 'Loading...';
   $primaryContainter.appendChild($loading);
@@ -90,17 +90,28 @@ export function displayMainPokemon(pokemon) {
 }
 
 export function enableButtons(callbackRefreshSecondary) {
-  document.querySelector('#button-next').onclick = (() => {
+  const $buttonNext = document.querySelector('#button-next');
+  const $buttonPrevious = document.querySelector('#button-previous');
+  $buttonPrevious.classList.add('disabled');
+
+  $buttonNext.onclick = (() => {
     if (page < 38) {
       page++;
       callbackRefreshSecondary(page);
+      $buttonPrevious.classList.remove('disabled');
+      if (page === 38) {
+        $buttonNext.classList.add('disabled');
+      }
     }
   });
-
-  document.querySelector('#button-previous').onclick = (() => {
+  $buttonPrevious.onclick = (() => {
     if (page > 1) {
       page--;
       callbackRefreshSecondary(page);
+      $buttonNext.classList.remove('disabled');
+      if (page === 1) {
+        $buttonPrevious.classList.add('disabled');
+      }
     }
   });
 }
