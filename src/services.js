@@ -2,6 +2,8 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-plusplus */
 
+import { loadMainPokemonFromLocalStorage, saveMainPokemon } from './storage.js'
+
 export function loadSecondaryImages(page = 1) {
   const ImagesSources = [];
   const lastId = page * 24;
@@ -13,8 +15,13 @@ export function loadSecondaryImages(page = 1) {
   return ImagesSources;
 }
 
-export async function loadMainPokemon(PokemonId = 1) {
-  const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${PokemonId}/`);
-  const pokemonJSON = await pokemon.json();
-  return pokemonJSON;
+export async function loadMainPokemon(pokemonId = 1) {
+  try {
+    return loadMainPokemonFromLocalStorage(pokemonId);
+  } catch (e) {
+    const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`);
+    const pokemonJSON = await pokemon.json();
+    saveMainPokemon(pokemonJSON, pokemonId);
+    return pokemonJSON;
+  }
 }

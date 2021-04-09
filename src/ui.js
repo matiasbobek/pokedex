@@ -23,6 +23,7 @@ function removeLoading() {
 
 export function displayLoading() {
   removePreviousMainPokemon();
+  removeLoading();
   const $primaryContainter = document.querySelector('#loading-containter');
   const $loading = document.createElement('p');
   $loading.className = 'float-right';
