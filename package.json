@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "empezar": "http-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress-dev": "cypress open",
+    "cypress-run": "cypress run",
+    "test-ui-dev": "run-p empezar cypress-dev"
   },
   "repository": {
     "type": "git",
@@ -21,8 +24,10 @@
     "bootstrap": "^4.6.0"
   },
   "devDependencies": {
+    "cypress": "^7.0.1",
     "eslint": "^7.23.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-plugin-import": "^2.22.1",
+    "npm-run-all": "^4.1.5"
   }
 }

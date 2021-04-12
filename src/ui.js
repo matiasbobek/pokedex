@@ -68,6 +68,7 @@ export function displayMainPokemon(pokemon) {
   removePreviousMainPokemon();
   const $pokemonName = document.createElement('li');
   $pokemonName.className = 'list-group-item';
+  $pokemonName.id = 'name';
   $pokemonName.textContent = `Name: ${FirstLetterUpperCase(pokemon.name)}`;
   $featuresList.appendChild($pokemonName);
 
