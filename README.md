@@ -9,5 +9,8 @@ https://matiasbobek.github.io/pokedex/
 
 Run `npm install`
 
-#### RESTful API used
+### RESTful API used
 pokeapi.co
+
+### Tested with
+Jest and Cypress

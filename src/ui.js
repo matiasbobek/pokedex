@@ -15,6 +15,17 @@ function removePreviousSecondaryPokemons() {
   document.querySelectorAll('.secondary-image').forEach((image) => image.remove());
 }
 
+function FirstLetterUpperCase(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function addAbility(ability, i) {
+  const $pokemonAbility = document.createElement('li');
+  $pokemonAbility.className = 'list-group-item';
+  $pokemonAbility.textContent = `Ability ${Number(i) + 1}: ${FirstLetterUpperCase(ability)}`;
+  $featuresList.appendChild($pokemonAbility);
+}
+
 function removeLoading() {
   if (document.querySelector('#loading')) {
     document.querySelector('#loading').remove();
@@ -33,18 +44,7 @@ export function displayLoading() {
   document.querySelector('#main-image').classList.add('hidden');
 }
 
-function FirstLetterUpperCase(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function addAbility(ability, i) {
-  const $pokemonAbility = document.createElement('li');
-  $pokemonAbility.className = 'list-group-item';
-  $pokemonAbility.textContent = `Ability ${Number(i) + 1}: ${FirstLetterUpperCase(ability)}`;
-  $featuresList.appendChild($pokemonAbility);
-}
-
-export function displaySecondaryImages(ImagesSources, callBackRefreshMainPokemon) {
+export function displaySecondaryImages(ImagesSources, callBackRefreshMainPokemon = () => {}) {
   removePreviousSecondaryPokemons();
   const $secondaryImages = document.querySelector('#secondary-images');
   const lastId = page * 24;

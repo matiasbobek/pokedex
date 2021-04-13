@@ -25,17 +25,21 @@
 }
 
 #button-next{
-    margin-left: 15px;
-}
-
-#features-list{
-    height: 28vh;
+    margin-left: 10px;
 }
 
 #features-list li{
     width: 65%;
 }
 
-#bar{
-    margin-top: 3.1rem;
+#features-list{
+    margin-bottom:5px;
+}
+
+#loading-containter{
+    height: 28vh;
+}
+
+#title{
+    font-size: 9vh;
 }
