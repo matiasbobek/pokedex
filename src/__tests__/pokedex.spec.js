@@ -3,7 +3,7 @@
 /// <reference types="Jest"/>
 
 import { loadSecondaryImages, loadMainPokemon } from '../services.js';
-import { displayLoading } from '../ui.js';
+import { displayLoading, displaySecondaryImages } from '../ui.js';
 
 describe('services', () => {
   beforeEach(() => {
@@ -44,8 +44,14 @@ describe('ui', () => {
       .toContain('Loading...');
   });
 
-    it('if displays the secondary images', ()=>{
-      document.body.innerHTML ='<div id="secondary-images"></div>'
-    })
+  it('if displays the secondary images', () => {
+    const ImagesSources = [];
+    for (let i = 1; i <= 24; i++) {
+      ImagesSources[i] = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`;
+    }
+    document.body.innerHTML = '<div id="secondary-images"></div>';
+    displaySecondaryImages(ImagesSources);
+    expect(document.querySelectorAll('#secondary-images img'))
+      .toHaveLength(24);
+  });
 });
-

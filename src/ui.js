@@ -44,7 +44,7 @@ export function displayLoading() {
   document.querySelector('#main-image').classList.add('hidden');
 }
 
-export function displaySecondaryImages(ImagesSources, callBackRefreshMainPokemon) {
+export function displaySecondaryImages(ImagesSources, callBackRefreshMainPokemon = () => {}) {
   removePreviousSecondaryPokemons();
   const $secondaryImages = document.querySelector('#secondary-images');
   const lastId = page * 24;
